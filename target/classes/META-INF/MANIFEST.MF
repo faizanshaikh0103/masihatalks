@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: masihatalk_blog
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Faizan Shaikh
+Implementation-Vendor-Id: com.masihatalk
+Build-Jdk: 1.8.0_144
+Implementation-URL: https://spring.io/projects/spring-boot/masihatalk_
+ blog
+Created-By: Maven Integration for Eclipse
+
