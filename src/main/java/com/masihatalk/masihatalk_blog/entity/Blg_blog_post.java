@@ -20,7 +20,7 @@ public class Blg_blog_post {
 	private String user_id;
 	
 	private String blog_title;
-	
+	@Lob
 	private String blog_content;
 	@Lob
 	private byte[] image_url;
