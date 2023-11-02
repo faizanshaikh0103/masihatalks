@@ -125,7 +125,18 @@ public class BlogPostDao {
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 		Query query = session
-				.createSQLQuery("ALTER TABLE blg_blog_post modify COLUMN blog_content TEXT, COLUMN image_url LONGBLOB");
+				.createSQLQuery("ALTER TABLE blg_blog_post modify COLUMN blog_content TEXT");
+		query.executeUpdate();
+		tx.commit();
+		session.close();
+		return true;
+	}
+
+	public boolean changedataTypeImage() {
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session
+				.createSQLQuery("ALTER TABLE blg_blog_post modify COLUMN image_url LONGBLOB");
 		query.executeUpdate();
 		tx.commit();
 		session.close();

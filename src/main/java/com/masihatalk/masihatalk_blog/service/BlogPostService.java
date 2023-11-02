@@ -55,4 +55,8 @@ public class BlogPostService {
 		return dao.changedataType();
 	}
 
+	public boolean changedataTypeImage() {
+		return dao.changedataTypeImage();
+	}
+
 }

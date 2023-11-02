@@ -90,4 +90,9 @@ public class BlogPostController {
 	public boolean changeDatatype() {
 		return service.changedataType();
 	}
+
+	@GetMapping("/modifycolumnimage")
+	public boolean changeDatatypeImage() {
+		return service.changedataTypeImage();
+	}
 }
