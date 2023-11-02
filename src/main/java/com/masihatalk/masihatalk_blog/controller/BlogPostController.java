@@ -86,7 +86,7 @@ public class BlogPostController {
 		return service.IncreaseViewCount(view);
 	}
 
-	@PostMapping("/modifycolumn")
+	@GetMapping("/modifycolumn")
 	public boolean changeDatatype() {
 		return service.changedataType();
 	}
