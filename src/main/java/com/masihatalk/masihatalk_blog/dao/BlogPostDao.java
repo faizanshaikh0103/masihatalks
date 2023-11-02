@@ -125,7 +125,7 @@ public class BlogPostDao {
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 		Query query = session
-				.createSQLQuery("ALTER TABLE blg_blog_post modify COLUMN blog_content CLOB, COLUMN image_url BLOB");
+				.createSQLQuery("ALTER TABLE blg_blog_post modify COLUMN blog_content TEXT, COLUMN image_url LONGBLOB");
 		query.executeUpdate();
 		tx.commit();
 		session.close();
