@@ -1,7 +1,7 @@
 package com.masihatalk.masihatalk_blog.dao;
 
 import java.util.List;
-
+import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
