@@ -25,60 +25,59 @@ import com.masihatalk.masihatalk_blog.service.BlogPostService;
 public class BlogPostController {
 	@Autowired
 	private BlogPostService service;
-	
+
 	@PostMapping("/postblog")
 	public ResponseEntity postblog(
-							@RequestParam("user_id") String user_id,
-							@RequestParam("blog_title") String blog_title,
-							@RequestParam("blog_content") String blog_content,
-							@RequestParam("image_url") MultipartFile image_url,
-							@RequestParam("author_name") String author_name
-							) {
+			@RequestParam("user_id") String user_id,
+			@RequestParam("blog_title") String blog_title,
+			@RequestParam("blog_content") String blog_content,
+			@RequestParam("image_url") MultipartFile image_url,
+			@RequestParam("author_name") String author_name) {
 		try {
-		Blg_blog_post blg_post = new Blg_blog_post();
-		blg_post.setUser_id(user_id);
-		blg_post.setBlog_title(blog_title);
-		blg_post.setBlog_content(blog_content);
-		blg_post.setImage_url(image_url.getBytes());
-		blg_post.setAuthor_name(author_name);
-		service.postblog(blg_post);
-		return ResponseEntity.ok(true);
+			Blg_blog_post blg_post = new Blg_blog_post();
+			blg_post.setUser_id(user_id);
+			blg_post.setBlog_title(blog_title);
+			blg_post.setBlog_content(blog_content);
+			blg_post.setImage_url(image_url.getBytes());
+			blg_post.setAuthor_name(author_name);
+			service.postblog(blg_post);
+			return ResponseEntity.ok(true);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
 		}
 	}
-	
+
 	@GetMapping("/getbloglist")
 	public List<Blg_blog_post> getbloglist() {
 		return service.getbloglist();
 	}
-	
+
 	@GetMapping("blogbyid/{id}")
 	public Blg_blog_post getblogbyid(@PathVariable long id) {
 		return service.getblogbyid(id);
 	}
-	
+
 	@GetMapping("/userblogs/{user_id}")
-	public List<Blg_blog_post> getBlogsbyUserId(@PathVariable String user_id){
-		System.out.println("user Id => "+user_id);
+	public List<Blg_blog_post> getBlogsbyUserId(@PathVariable String user_id) {
+		System.out.println("user Id => " + user_id);
 		return service.getBlogsbyUserId(user_id);
 	}
-	
+
 	@PutMapping("/updateblog/{bid}")
 	public String updateblog(@PathVariable long bid, @RequestBody Blg_blog_post blg) {
-		return service.updateblog(bid,blg);
+		return service.updateblog(bid, blg);
 	}
-	
+
 	@DeleteMapping("deleteblog/{bid}")
 	public boolean deleteblog(@PathVariable long bid) {
 		return service.deleteblog(bid);
 	}
-	
+
 	@GetMapping("/viewcount/{bid}")
 	public Blg_blog_post_views blogViewCount(@PathVariable long bid) {
 		return service.blogViewCount(bid);
 	}
-	
+
 	@PostMapping("/increaseCount")
 	public boolean IncreaseViewCount(@RequestBody long bid) {
 		Blg_blog_post_views view = new Blg_blog_post_views();
@@ -88,7 +87,7 @@ public class BlogPostController {
 	}
 
 	@PostMapping("/modifycolumn")
-	public boolean changeDatatype(){
+	public boolean changeDatatype() {
 		return service.changedataType();
 	}
 }
