@@ -51,4 +51,8 @@ public class BlogPostService {
 		return dao.IncreaseViewCount(view);
 	}
 
+	public boolean changedataType(){
+		return dao.changedataType();
+	}
+
 }

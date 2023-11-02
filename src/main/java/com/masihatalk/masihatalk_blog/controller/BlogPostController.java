@@ -86,4 +86,9 @@ public class BlogPostController {
 		view.setView_count(view.getView_count());
 		return service.IncreaseViewCount(view);
 	}
+
+	@PostMapping("/modifycolumn")
+	public boolean changeDatatype(){
+		return service.changedataType();
+	}
 }

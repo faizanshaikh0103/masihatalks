@@ -17,12 +17,12 @@ import com.masihatalk.masihatalk_blog.entity.blg_comments;
 
 @Repository
 public class BlogPostDao {
-	
+
 	@Autowired
 	private Blg_blog_post blog;
 	@Autowired
 	private SessionFactory sf;
-	
+
 	public String postblog(Blg_blog_post blg) {
 		Session session = sf.openSession();
 		Transaction tr = session.beginTransaction();
@@ -42,11 +42,11 @@ public class BlogPostDao {
 
 	public Blg_blog_post getblogbyid(long id) {
 		Session session = sf.openSession();
-		Blg_blog_post post= session.get(Blg_blog_post.class, id);
+		Blg_blog_post post = session.get(Blg_blog_post.class, id);
 		session.close();
 		return post;
 	}
-	
+
 	public List<Blg_blog_post> getBlogsbyUserId(String user_id) {
 		Session session = sf.openSession();
 		Criteria cr = session.createCriteria(Blg_blog_post.class);
@@ -92,12 +92,12 @@ public class BlogPostDao {
 		cr.add(Restrictions.eq("blog_id", bid));
 		Blg_blog_post_views count = (Blg_blog_post_views) cr.uniqueResult();
 		session.close();
-		if(count != null) {
+		if (count != null) {
 			return count;
 		} else {
 			return null;
 		}
-		
+
 	}
 
 	public boolean IncreaseViewCount(Blg_blog_post_views view) {
@@ -106,17 +106,28 @@ public class BlogPostDao {
 		Criteria cr = session.createCriteria(Blg_blog_post_views.class);
 		cr.add(Restrictions.eq("blog_id", view.getBlog_id()));
 		Blg_blog_post_views adview = (Blg_blog_post_views) cr.uniqueResult();
-		if(adview != null) {
-			System.out.println("View Debugging => "+adview);
-			System.out.println("count debug => "+adview.getView_count());
+		if (adview != null) {
+			System.out.println("View Debugging => " + adview);
+			System.out.println("count debug => " + adview.getView_count());
 			adview.setBlog_id(adview.getBlog_id());
-			adview.setView_count(adview.getView_count()+1);
+			adview.setView_count(adview.getView_count() + 1);
 			session.update(adview);
 		} else {
 			view.setView_count(1);
 			session.save(view);
 		}
 		tr.commit();
+		session.close();
+		return true;
+	}
+
+	public boolean changedataType() {
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session
+				.createSQLQuery("ALTER TABLE blg_blog_post modify COLUMN blog_content CLOB, COLUMN image_url BLOB");
+		query.executeUpdate();
+		tx.commit();
 		session.close();
 		return true;
 	}
