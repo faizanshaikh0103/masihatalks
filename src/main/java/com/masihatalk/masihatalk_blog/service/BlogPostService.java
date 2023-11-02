@@ -15,7 +15,7 @@ public class BlogPostService {
 
 	@Autowired
 	BlogPostDao dao;
-	
+
 	public String postblog(Blg_blog_post blg) {
 		LocalDateTime date = LocalDateTime.now();
 		blg.setPost_date(date);
@@ -23,7 +23,7 @@ public class BlogPostService {
 	}
 
 	public List<Blg_blog_post> getbloglist() {
-		
+
 		return dao.getbloglist();
 	}
 
@@ -32,7 +32,7 @@ public class BlogPostService {
 	}
 
 	public String updateblog(long bid, Blg_blog_post blg) {
-		return dao.updateblog(bid,blg);
+		return dao.updateblog(bid, blg);
 	}
 
 	public boolean deleteblog(long bid) {
@@ -51,7 +51,7 @@ public class BlogPostService {
 		return dao.IncreaseViewCount(view);
 	}
 
-	public boolean changedataType(){
+	public boolean changedataType() {
 		return dao.changedataType();
 	}
 
